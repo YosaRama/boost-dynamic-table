@@ -16,7 +16,7 @@ function DynamicTablePage() {
           if (outerIndex == innerIndex) {
             return item;
           } else if (innerIndex == initialArray.length - (outerIndex + 1)) {
-            return item;
+            return inner;
           } else {
             return "-";
           }
@@ -56,7 +56,7 @@ function DynamicTablePage() {
               if (outerIndex == innerIndex) {
                 return item;
               } else if (innerIndex == createdArray.length - (outerIndex + 1)) {
-                return item;
+                return inner;
               } else {
                 return "-";
               }
