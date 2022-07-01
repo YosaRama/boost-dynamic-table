@@ -7,15 +7,14 @@ function DynamicTablePage() {
   const [validation, setValidation] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //? Initial Table
-  useEffect(() => {
-    const initialArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  //? Generate Table Function
+  const generateTable = (array) => {
     setDynamicTable(
-      initialArray.map((item, outerIndex) => {
-        return initialArray.map((inner, innerIndex) => {
+      array.map((item, outerIndex) => {
+        return array.map((inner, innerIndex) => {
           if (outerIndex == innerIndex) {
             return item;
-          } else if (innerIndex == initialArray.length - (outerIndex + 1)) {
+          } else if (innerIndex == array.length - (outerIndex + 1)) {
             return inner;
           } else {
             return "-";
@@ -23,6 +22,12 @@ function DynamicTablePage() {
         });
       })
     );
+  };
+
+  //? Initial Table
+  useEffect(() => {
+    const initialArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    generateTable(initialArray);
   }, []);
 
   //? Generate Dynamic Table
@@ -50,19 +55,7 @@ function DynamicTablePage() {
         }
 
         //? Create parsing array
-        setDynamicTable(
-          createdArray.map((item, outerIndex) => {
-            return createdArray.map((inner, innerIndex) => {
-              if (outerIndex == innerIndex) {
-                return item;
-              } else if (innerIndex == createdArray.length - (outerIndex + 1)) {
-                return inner;
-              } else {
-                return "-";
-              }
-            });
-          })
-        );
+        generateTable(createdArray);
 
         setLoading(false);
       }, 1000);
